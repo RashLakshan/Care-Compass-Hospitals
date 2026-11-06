@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'staff') {
-    header("Location: login.php"); 
+    header("Location: ../auth/login.php"); 
     exit();
 }
 
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 $staff_id = $_SESSION['user_id'];
 $sql_staff = "SELECT name FROM users WHERE id = ?";
@@ -28,14 +28,15 @@ $bill_payments_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) A
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Portal — Care Compass Hospital</title>
-    <link rel="stylesheet" href="admin_styles.css">
+    <link rel="stylesheet" href="../assets/css/admin_styles.css">
 </head>
 <body>
 
 <?php
-$portal_home  = 'staff_portal.php';
+$portal_home  = 'portal.php';
 $portal_label = 'Staff Portal';
-include 'admin_header.php';
+$base_path    = '../';
+include '../includes/header.php';
 ?>
 
 <div class="internal-body">
@@ -69,15 +70,15 @@ include 'admin_header.php';
         <!-- Staff Module Grid -->
         <div class="internal-page-title">Staff Actions</div>
         <div class="admin-modules-grid">
-            <a href="manage_appointments.php" class="admin-module-card">
+            <a href="../admin/manage_appointments.php" class="admin-module-card">
                 <div class="module-icon icon-orange">📅</div>
                 <div class="module-label">Manage Appointments</div>
             </a>
-            <a href="view_med_records.php" class="admin-module-card">
+            <a href="view_medical_records.php" class="admin-module-card">
                 <div class="module-icon icon-teal">📋</div>
                 <div class="module-label">View Medical Records</div>
             </a>
-            <a href="manage_bill_payments.php" class="admin-module-card">
+            <a href="../admin/manage_bill_payments.php" class="admin-module-card">
                 <div class="module-icon icon-green">💳</div>
                 <div class="module-label">Manage Bill Payments</div>
             </a>
@@ -87,7 +88,7 @@ include 'admin_header.php';
 </div>
 
 <footer class="internal-footer">
-    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="staff_portal.php">Staff Portal</a>
+    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="portal.php">Staff Portal</a>
 </footer>
 
 </body>

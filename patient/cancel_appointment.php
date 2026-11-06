@@ -3,11 +3,11 @@ session_start();
 
 // Check if user is logged in and is a patient
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'patient') {
-    header("Location: login.php");
+    header("Location: ../auth/login.php");
     exit();
 }
 
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 // Handle appointment cancellation
 if (isset($_GET['id'])) {
@@ -40,4 +40,3 @@ if (isset($_GET['id'])) {
     exit();
 }
 ?>
-

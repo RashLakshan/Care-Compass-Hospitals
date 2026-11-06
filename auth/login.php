@@ -2,8 +2,7 @@
 
 session_start();
 
-
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
@@ -26,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
             
             if ($row['role'] == 'admin') {
-                header("Location: admin_portal.php");
+                header("Location: ../admin/portal.php");
             } elseif ($row['role'] == 'staff') {
-                header("Location: staff_portal.php");
+                header("Location: ../staff/portal.php");
             } elseif ($row['role'] == 'patient') {
-                header("Location: patient_portal.php"); 
+                header("Location: ../patient/portal.php"); 
             }
             exit();
         } else {
@@ -50,16 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Care Compass Hospitals - Login</title>
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
     <!-- Header Section -->
     <header class="auth-header">
         <div class="container auth-header-inner">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/cchlogo.png" alt="Care Compass Hospital">
+            <a class="navbar-brand" href="../index.php">
+                <img src="../assets/images/cchlogo.png" alt="Care Compass Hospital">
             </a>
-            <a href="index.php" class="btn-back-home">&#8592; Back to Home</a>
+            <a href="../index.php" class="btn-back-home">&#8592; Back to Home</a>
         </div>
     </header>
 
@@ -80,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
                         <input type="submit" name="login" value="Login" class="btn">
                     </form>
-                    <p class="text-center mt-4">Don’t have an account? <a href="register.php" style="color: #007bff; font-weight: bold; text-decoration: none;">Register here</a>.</p>
+                    <p class="text-center mt-4">Don't have an account? <a href="register.php" style="color: #007bff; font-weight: bold; text-decoration: none;">Register here</a>.</p>
                 </div>
             </div>
         </div>
@@ -98,12 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 <div class="footer-section links">
                     <h2>Quick Links</h2>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <li><a href="doctors.php">Doctors</a></li>
-                        <li><a href="appointments.php">Appointments</a></li>
+                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="../services.php">Services</a></li>
+                        <li><a href="../doctors.php">Doctors</a></li>
+                        <li><a href="../patient/appointments.php">Appointments</a></li>
                         <li><a href="login.php">Patient Portal</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
+                        <li><a href="../contact.php">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -116,19 +115,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 <div class="footer-section social">
                     <h2>Follow Us</h2>
                     <div class="social-media">
-                        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                        <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                        <a href="#"><img src="../assets/images/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../assets/images/twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="../assets/images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>© 2025 | Designed by <a href="#">Rashintha Lakshan</a></p>
+                <p>&copy; 2025 | Designed by <a href="#">Rashintha Lakshan</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script src="../assets/js/scripts.js"></script>
 </body>
 </html>
+

@@ -3,7 +3,7 @@
 session_start();
 
 // Database connection
-include 'db_connect.php';
+include 'includes/db_connect.php';
 
 // Fetch doctors from the database
 $doctors = [];
@@ -47,7 +47,7 @@ if (isset($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Care Compass Hospitals - Doctors</title>
     <!-- Custom CSS  -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -60,8 +60,8 @@ if (isset($_GET['search'])) {
                     <a href="mailto:cchospital@gmail.com">✉️ cchospital@gmail.com</a>
                 </div>
                 <nav class="top-nav">
-                    <a href="login.php">Log in</a>
-                    <a href="register.php">Register</a>
+                    <a href="auth/login.php">Log in</a>
+                    <a href="auth/register.php">Register</a>
                 </nav>
             </div>
         </div>
@@ -70,17 +70,17 @@ if (isset($_GET['search'])) {
         <nav class="navbar">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
-                    <img src="images/cchlogo.png" alt="Care Compass Hospital" width="300">
+                    <img src="assets/images/cchlogo.png" alt="Care Compass Hospital" width="300">
                 </a>
                 <button class="menu-toggle">☰</button>
                 <div class="nav-links">
                     <a href="index.php">Home</a>
                     <a href="doctors.php" class="active">Doctors</a>
                     <a href="services.php">Services</a>
-                    <a href="ptportalloging.php">Patient Portal</a>
+                    <a href="patient/gateway.php">Patient Portal</a>
                     <a href="contact.php">Contact Us</a>
                 </div>
-                <a href="appointments.php" class="btn">Appointment</a>
+                <a href="patient/appointments.php" class="btn">Appointment</a>
             </div>
         </nav>
     </header>
@@ -107,12 +107,12 @@ if (isset($_GET['search'])) {
                     <div class="doctor-container">
                         <?php foreach ($search_results as $doctor): ?>
                             <div class="doctor-box">
-                                <img src="images/doctors/<?php echo htmlspecialchars($doctor['id']); ?>.jpg" alt="<?php echo htmlspecialchars($doctor['name']); ?>" class="doctor-photo">
+                                <img src="assets/images/doctors/<?php echo htmlspecialchars($doctor['id']); ?>.jpg" alt="<?php echo htmlspecialchars($doctor['name']); ?>" class="doctor-photo">
                                 <h3><?php echo htmlspecialchars($doctor['name']); ?></h3>
                                 <p><strong>Specialty:</strong> <?php echo htmlspecialchars($doctor['specialty']); ?></p>
                                 <p><strong>Location:</strong> <?php echo htmlspecialchars($doctor['location']); ?></p>
                                 <p><strong>Contact:</strong> <?php echo htmlspecialchars($doctor['contact']); ?></p>
-                                <a href="appointments.php?doctor_id=<?php echo $doctor['id']; ?>" class="btn">Book Appointment</a>
+                                <a href="patient/appointments.php?doctor_id=<?php echo $doctor['id']; ?>" class="btn">Book Appointment</a>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -120,12 +120,12 @@ if (isset($_GET['search'])) {
                     <div class="doctor-container">
                         <?php foreach ($doctors as $doctor): ?>
                             <div class="doctor-box">
-                                <img src="images/doctors/<?php echo htmlspecialchars($doctor['id']); ?>.jpg" alt="<?php echo htmlspecialchars($doctor['name']); ?>" class="doctor-photo">
+                                <img src="assets/images/doctors/<?php echo htmlspecialchars($doctor['id']); ?>.jpg" alt="<?php echo htmlspecialchars($doctor['name']); ?>" class="doctor-photo">
                                 <h3><?php echo htmlspecialchars($doctor['name']); ?></h3>
                                 <p><strong>Specialty:</strong> <?php echo htmlspecialchars($doctor['specialty']); ?></p>
                                 <p><strong>Location:</strong> <?php echo htmlspecialchars($doctor['location']); ?></p>
                                 <p><strong>Contact:</strong> <?php echo htmlspecialchars($doctor['contact']); ?></p>
-                                <a href="appointments.php?doctor_id=<?php echo $doctor['id']; ?>" class="btn">Book Appointment</a>
+                                <a href="patient/appointments.php?doctor_id=<?php echo $doctor['id']; ?>" class="btn">Book Appointment</a>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -149,8 +149,8 @@ if (isset($_GET['search'])) {
                         <li><a href="index.php">Home</a></li>
                         <li><a href="services.php">Services</a></li>
                         <li><a href="doctors.php">Doctors</a></li>
-                        <li><a href="appointments.php">Appointments</a></li>
-                        <li><a href="login.php">Patient Portal</a></li>
+                        <li><a href="patient/appointments.php">Appointments</a></li>
+                        <li><a href="auth/login.php">Patient Portal</a></li>
                         <li><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
@@ -164,9 +164,9 @@ if (isset($_GET['search'])) {
                 <div class="footer-section social">
                     <h2>Follow Us</h2>
                     <div class="social-media">
-                        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                        <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                        <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="assets/images/twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="assets/images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
             </div>
@@ -178,6 +178,6 @@ if (isset($_GET['search'])) {
     </footer>
 
     
-    <script src="scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

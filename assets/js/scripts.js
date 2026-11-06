@@ -702,7 +702,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     // Add confirmation for logout button
-    const logoutButton = document.querySelector('a[href="logout.php"]');
+    const logoutButton = document.querySelector('a[href*="logout.php"]');
     if (logoutButton) {
         logoutButton.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to log out?')) {
@@ -725,7 +725,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Add confirmation for logout button
-    const logoutButton = document.querySelector('a[href="logout.php"]');
+    const logoutButton = document.querySelector('a[href*="logout.php"]');
     if (logoutButton) {
         logoutButton.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to log out?')) {
@@ -748,7 +748,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Add confirmation for logout button
-    const logoutButton = document.querySelector('a[href="logout.php"]');
+    const logoutButton = document.querySelector('a[href*="logout.php"]');
     if (logoutButton) {
         logoutButton.addEventListener('click', function(e) {
             if (!confirm('Are you sure you want to log out?')) {

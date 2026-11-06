@@ -3,23 +3,23 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php"); 
+    header("Location: ../auth/login.php"); 
     exit();
 }
 
 // Redirect staff and admin to their respective portals
 if (isset($_SESSION['role'])) {
     if ($_SESSION['role'] === 'admin') {
-        header("Location: admin_portal.php");
+        header("Location: ../admin/portal.php");
         exit();
     } elseif ($_SESSION['role'] === 'staff') {
-        header("Location: staff_portal.php");
+        header("Location: ../staff/portal.php");
         exit();
     }
 }
 
 // Database connection
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 // Fetch user details
 $user_id = $_SESSION['user_id'];
@@ -30,12 +30,12 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if ($user = mysqli_fetch_assoc($result)) {
-    $user_name = $user['name'];
+    $user_name     = $user['name'];
     $user_username = $user['username'];
-    $user_email = $user['email'];
-    $user_mobile = $user['mobile'];
+    $user_email    = $user['email'];
+    $user_mobile   = $user['mobile'];
 } else {
-    echo "<script>alert('User not found. Please log in again.'); window.location.href = 'login.php';</script>";
+    echo "<script>alert('User not found. Please log in again.'); window.location.href = '../auth/login.php';</script>";
     exit();
 }
 mysqli_stmt_close($stmt);
@@ -68,14 +68,15 @@ mysqli_stmt_close($stmt_bills);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Portal — Care Compass Hospital</title>
-    <link rel="stylesheet" href="admin_styles.css">
+    <link rel="stylesheet" href="../assets/css/admin_styles.css">
 </head>
 <body>
 
 <?php
-$portal_home  = 'index.php';
+$portal_home  = 'portal.php';
 $portal_label = 'Patient Portal';
-include 'admin_header.php';
+$base_path    = '../';
+include '../includes/header.php';
 ?>
 
 <div class="internal-body">
@@ -177,7 +178,7 @@ include 'admin_header.php';
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="feedback_text">Your Experience & Feedback</label>
+                        <label for="feedback_text">Your Experience &amp; Feedback</label>
                         <textarea name="feedback_text" id="feedback_text" required placeholder="Share your experience with our hospital, doctors, or staff..." rows="3" class="form-input-modern"></textarea>
                     </div>
                     <button type="submit" class="btn-submit-modern">Submit Feedback</button>
@@ -189,8 +190,9 @@ include 'admin_header.php';
 </div>
 
 <footer class="internal-footer">
-    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="patient_portal.php">Patient Portal</a>
+    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="portal.php">Patient Portal</a>
 </footer>
 
 </body>
 </html>
+

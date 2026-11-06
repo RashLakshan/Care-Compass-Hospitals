@@ -3,7 +3,7 @@ session_start();
 
 // If user is already logged in, redirect directly to their dashboard
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php");
+    header("Location: ../dashboard.php");
     exit();
 }
 ?>
@@ -12,8 +12,8 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient & Visitor Portal — Care Compass Hospitals</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Patient &amp; Visitor Portal — Care Compass Hospitals</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
 
@@ -32,16 +32,16 @@ if (isset($_SESSION['user_id'])) {
         <!-- Navigation Bar -->
         <nav class="navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.php">
-                    <img src="images/cchlogo.png" alt="Care Compass Hospital" width="300">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/images/cchlogo.png" alt="Care Compass Hospital" width="300">
                 </a>
                 <button class="menu-toggle">☰</button>
                 <div class="nav-links">
-                    <a href="index.php">Home</a>
-                    <a href="doctors.php">Doctors</a>
-                    <a href="services.php">Services</a>
-                    <a href="ptportalloging.php" class="active">Patient Portal</a>
-                    <a href="contact.php">Contact Us</a>
+                    <a href="../index.php">Home</a>
+                    <a href="../doctors.php">Doctors</a>
+                    <a href="../services.php">Services</a>
+                    <a href="gateway.php" class="active">Patient Portal</a>
+                    <a href="../contact.php">Contact Us</a>
                 </div>
                 <a href="appointments.php" class="btn">Appointment</a>
             </div>
@@ -83,7 +83,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
 
-                    <a href="login.php" class="btn-gateway-action">
+                    <a href="../auth/login.php" class="btn-gateway-action">
                         <span>Access your account to manage...</span>
                         <span>&rarr;</span>
                     </a>
@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
 
-                    <a href="register.php" class="btn-gateway-action btn-gateway-register">
+                    <a href="../auth/register.php" class="btn-gateway-action btn-gateway-register">
                         <span>If you don't have an account, register here</span>
                         <span>&rarr;</span>
                     </a>
@@ -153,12 +153,12 @@ if (isset($_SESSION['user_id'])) {
                 <div class="footer-section links">
                     <h2>Quick Links</h2>
                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="doctors.php">Doctors</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <li><a href="login.php">Patient Login</a></li>
-                        <li><a href="register.php">Register</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
+                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="../doctors.php">Doctors</a></li>
+                        <li><a href="../services.php">Services</a></li>
+                        <li><a href="../auth/login.php">Patient Login</a></li>
+                        <li><a href="../auth/register.php">Register</a></li>
+                        <li><a href="../contact.php">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -171,9 +171,9 @@ if (isset($_SESSION['user_id'])) {
                 <div class="footer-section social">
                     <h2>Follow Us</h2>
                     <div class="social-media">
-                        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                        <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                        <a href="#"><img src="../assets/images/facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../assets/images/twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="../assets/images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
             </div>
@@ -184,6 +184,7 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script src="../assets/js/scripts.js"></script>
 </body>
 </html>
+

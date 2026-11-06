@@ -3,12 +3,12 @@ session_start();
 
 // Check if user is logged in and is a patient
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'patient') {
-    header("Location: login.php"); 
+    header("Location: ../auth/login.php"); 
     exit();
 }
 
 // Database connection
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 // Fetch patient details and their medical records
 $patient_id = $_SESSION['user_id'];
@@ -39,19 +39,20 @@ mysqli_stmt_close($stmt);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Medical Records — Care Compass Hospital</title>
-    <link rel="stylesheet" href="admin_styles.css">
+    <link rel="stylesheet" href="../assets/css/admin_styles.css">
 </head>
 <body>
 
 <?php
-$portal_home  = 'patient_portal.php';
+$portal_home  = 'portal.php';
 $portal_label = 'Patient Portal';
-include 'admin_header.php';
+$base_path    = '../';
+include '../includes/header.php';
 ?>
 
 <div class="internal-body">
     <div class="internal-manage-wrap">
-        <div class="internal-breadcrumb"><a href="patient_portal.php">Patient Portal</a> &rsaquo; Medical Records</div>
+        <div class="internal-breadcrumb"><a href="portal.php">Patient Portal</a> &rsaquo; Medical Records</div>
         <div class="internal-page-title">My Medical Records</div>
 
         <?php if (empty($medical_records)): ?>
@@ -91,7 +92,7 @@ include 'admin_header.php';
 </div>
 
 <footer class="internal-footer">
-    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="patient_portal.php">Patient Portal</a>
+    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="portal.php">Patient Portal</a>
 </footer>
 
 </body>

@@ -3,7 +3,7 @@
 session_start();
 
 
-include 'db_connect.php';
+include 'includes/db_connect.php';
 
 
 $feedback_limit = 3;
@@ -36,7 +36,7 @@ mysqli_stmt_close($stmt);
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     
@@ -49,8 +49,8 @@ mysqli_stmt_close($stmt);
                     <a href="mailto:cchospital@gmail.com">✉️ cchospital@gmail.com</a>
                 </div>
                 <nav class="top-nav">
-                    <a href="login.php">Log in</a>
-                    <a href="register.php">Register</a>
+                    <a href="auth/login.php">Log in</a>
+                    <a href="auth/register.php">Register</a>
                 </nav> 
                 
             </div>
@@ -60,18 +60,18 @@ mysqli_stmt_close($stmt);
         <nav class="navbar">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
-                    <img src="images/cchlogo.png" alt="Care Compass Hospital" width="300">
+                    <img src="assets/images/cchlogo.png" alt="Care Compass Hospital" width="300">
                 </a>
                 <button class="menu-toggle">☰</button>
                 <div class="nav-links">
                     <a href="index.php" class="active">Home</a>
                     <a href="doctors.php">Doctors</a>
                     <a href="services.php">Services</a>
-                    <a href="ptportalloging.php">Patient Portal</a>
+                    <a href="patient/gateway.php">Patient Portal</a>
                     <a href="contact.php">Contact Us</a>
                     <a href="about.php">About Us</a>
                 </div>
-                <a href="appointments.php" class="btn">Appointment</a>
+                <a href="patient/appointments.php" class="btn">Appointment</a>
             </div>
         </nav>
     </header>
@@ -81,7 +81,7 @@ mysqli_stmt_close($stmt);
         <div class="hero-content">
             <h2>Your Health, Our Priority</h2>
             <p>Welcome to Care Compass Hospitals - Quality care across Colombo, Kandy, and Kurunegala.</p>
-            <a href="appointments.php" class="btn">Book an Appointment</a>
+            <a href="patient/appointments.php" class="btn">Book an Appointment</a>
         </div>
     </section>
 
@@ -90,8 +90,8 @@ mysqli_stmt_close($stmt);
         <h2>Explore Our Features</h2>
         <div class="links-container">
             <a href="doctors.php" class="link-box">Meet Our Experts</a>
-            <a href="appointments.php" class="link-box">Book Your Visit</a>
-            <a href="ptportalloging.php" class="link-box">Patient Portal</a>
+            <a href="patient/appointments.php" class="link-box">Book Your Visit</a>
+            <a href="patient/gateway.php" class="link-box">Patient Portal</a>
             <a href="about.php" class="link-box">About Us</a>
         </div>
     </section>
@@ -101,19 +101,19 @@ mysqli_stmt_close($stmt);
         <h2>Our Services</h2>
         <div class="service-container">
             <div class="service-box">
-                <img src="images/surgery.jpg" alt="Medical Treatments">
+                <img src="assets/images/surgery.jpg" alt="Medical Treatments">
                 <h3>Medical Treatments</h3>
                 <p>Expert care in Western, Ayurvedic, and more.</p>
                 <a href="services.php#Western Medicine">Learn More</a>
             </div>
             <div class="service-box">
-                <img src="images/lab.jpg" alt="Laboratory Tests">
+                <img src="assets/images/lab.jpg" alt="Laboratory Tests">
                 <h3>Laboratory Tests</h3>
                 <p>Accurate diagnostics for your health needs.</p>
                 <a href="services.php#Blood Tests">Learn More</a>
             </div>
             <div class="service-box">
-                <img src="images/emergencty.png" alt="Emergency Care">
+                <img src="assets/images/emergencty.png" alt="Emergency Care">
                 <h3>Emergency Care</h3>
                 <p>24/7 support for urgent medical situations.</p>
                 <a href="services.php#Emergency Care">Learn More</a>
@@ -166,9 +166,9 @@ mysqli_stmt_close($stmt);
                 <div class="footer-section social">
                     <h2>Follow Us</h2>
                     <div class="social-media">
-                        <a href="https://www.facebook.com/share/15zxU44JMz/?mibextid=wwXIfr"><img src="images/facebook.png" alt="Facebook"></a>
-                        <a href="https://x.com/Rash_lakshan?t=GwXPhZpm9inpAfr3paZRwQ&s=08"><img src="images/twitter.png" alt="Twitter"></a>
-                        <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                        <a href="https://www.facebook.com/share/15zxU44JMz/?mibextid=wwXIfr"><img src="assets/images/facebook.png" alt="Facebook"></a>
+                        <a href="https://x.com/Rash_lakshan?t=GwXPhZpm9inpAfr3paZRwQ&s=08"><img src="assets/images/twitter.png" alt="Twitter"></a>
+                        <a href="#"><img src="assets/images/instagram.png" alt="Instagram"></a>
                     </div>
                 </div>
             </div>
@@ -180,6 +180,6 @@ mysqli_stmt_close($stmt);
     </footer>
 
     <!-- Custom JS  -->
-    <script src="scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

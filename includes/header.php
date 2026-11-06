@@ -1,18 +1,20 @@
 <?php
-// Shared internal header for Admin pages
-// Usage: include 'admin_header.php';
-// Requires $portal_home to be set before including (e.g. 'admin_portal.php')
-if (!isset($portal_home)) $portal_home = 'admin_portal.php';
-if (!isset($portal_label)) $portal_label = 'Admin Panel';
+// Shared internal header for Admin, Staff, and Patient portal pages.
+// Usage: include '../includes/header.php';
+// Requires $portal_home and $portal_label to be set before including.
+// $base_path should be set to the relative path from the calling file back to root (e.g. '../').
+if (!isset($portal_home))  $portal_home  = '../admin/portal.php';
+if (!isset($portal_label)) $portal_label = 'Portal';
+if (!isset($base_path))    $base_path    = '../';
 ?>
 <header class="internal-header">
     <div class="internal-header-inner">
         <a href="<?php echo $portal_home; ?>" class="internal-logo-link">
-            <img src="images/cchlogo.png" alt="Care Compass Hospital" height="54">
+            <img src="<?php echo $base_path; ?>assets/images/cchlogo.png" alt="Care Compass Hospital" height="54">
         </a>
         <div class="internal-header-right">
             <span class="internal-role-badge"><?php echo htmlspecialchars($portal_label); ?></span>
-            <a href="logout.php" class="btn-internal-logout">
+            <a href="<?php echo $base_path; ?>auth/logout.php" class="btn-internal-logout">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align:-2px;margin-right:5px"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
                 Logout
             </a>

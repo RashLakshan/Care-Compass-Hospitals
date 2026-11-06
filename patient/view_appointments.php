@@ -3,12 +3,12 @@ session_start();
 
 // Check if user is logged in and is a patient
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'patient') {
-    header("Location: login.php"); 
+    header("Location: ../auth/login.php"); 
     exit();
 }
 
 // Database connection
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 // Fetch patient details and their appointments
 $patient_id = $_SESSION['user_id'];
@@ -39,19 +39,20 @@ mysqli_stmt_close($stmt);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Appointments — Care Compass Hospital</title>
-    <link rel="stylesheet" href="admin_styles.css">
+    <link rel="stylesheet" href="../assets/css/admin_styles.css">
 </head>
 <body>
 
 <?php
-$portal_home  = 'patient_portal.php';
+$portal_home  = 'portal.php';
 $portal_label = 'Patient Portal';
-include 'admin_header.php';
+$base_path    = '../';
+include '../includes/header.php';
 ?>
 
 <div class="internal-body">
     <div class="internal-manage-wrap">
-        <div class="internal-breadcrumb"><a href="patient_portal.php">Patient Portal</a> &rsaquo; Appointments</div>
+        <div class="internal-breadcrumb"><a href="portal.php">Patient Portal</a> &rsaquo; Appointments</div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
             <div class="internal-page-title" style="margin-bottom: 0;">My Appointments</div>
             <a href="appointments.php" class="btn-action-primary">+ Book New Appointment</a>
@@ -73,7 +74,7 @@ include 'admin_header.php';
                         <tr>
                             <th>Doctor</th>
                             <th>Service</th>
-                            <th>Date & Time</th>
+                            <th>Date &amp; Time</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -111,7 +112,7 @@ include 'admin_header.php';
 </div>
 
 <footer class="internal-footer">
-    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="patient_portal.php">Patient Portal</a>
+    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="portal.php">Patient Portal</a>
 </footer>
 
 </body>

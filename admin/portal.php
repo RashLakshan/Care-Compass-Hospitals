@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php"); 
+    header("Location: ../auth/login.php"); 
     exit();
 }
 
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT name, username FROM users WHERE id = ?";
@@ -19,7 +19,7 @@ if ($admin = mysqli_fetch_assoc($result)) {
     $admin_name = $admin['name'];
     $admin_username = $admin['username'];
 } else {
-    echo "<script>alert('Admin not found. Please log in again.'); window.location.href = 'login.php';</script>";
+    echo "<script>alert('Admin not found. Please log in again.'); window.location.href = '../auth/login.php';</script>";
     exit();
 }
 mysqli_stmt_close($stmt);
@@ -37,14 +37,15 @@ $stats['bills']        = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Portal — Care Compass Hospital</title>
-    <link rel="stylesheet" href="admin_styles.css">
+    <link rel="stylesheet" href="../assets/css/admin_styles.css">
 </head>
 <body>
 
 <?php
-$portal_home  = 'admin_portal.php';
+$portal_home  = 'portal.php';
 $portal_label = 'Admin Panel';
-include 'admin_header.php';
+$base_path    = '../';
+include '../includes/header.php';
 ?>
 
 <div class="internal-body">
@@ -112,7 +113,7 @@ include 'admin_header.php';
 </div>
 
 <footer class="internal-footer">
-    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="admin_portal.php">Admin Panel</a>
+    &copy; 2025 Care Compass Hospitals &nbsp;|&nbsp; <a href="portal.php">Admin Panel</a>
 </footer>
 
 </body>
