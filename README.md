@@ -1,5 +1,13 @@
 # 🏥 Care Compass Hospital Management System
 
+> **Academic Project Notice**: This software was designed and developed as a **University Academic Assignment** for a Web Application Development and Software Engineering module. It represents an end-to-end, multi-role hospital management web portal demonstrating secure server-side programming, relational database management, and modular architecture.
+
+[![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Apache](https://img.shields.io/badge/Server-Apache%20%2F%20WAMP%20%2F%20XAMPP-D22128?style=flat-square&logo=apache&logoColor=white)](https://httpd.apache.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
+[![Project Type](https://img.shields.io/badge/Project-University%20Assignment-success?style=flat-square)](#-project-information)
+
 A full-stack, multi-role web application designed for **Care Compass Hospitals** (operating across Colombo, Kandy, and Kurunegala) to manage hospital operations, patient records, doctor allocations, appointment bookings, billing, and clinical services.
 
 ---
@@ -15,66 +23,70 @@ A full-stack, multi-role web application designed for **Care Compass Hospitals**
 - [System Architecture & Roles](#-system-architecture--roles)
 - [Technology Stack](#-technology-stack)
 - [Database Schema](#-database-schema)
+- [Directory Structure](#-directory-structure)
 - [Installation & Setup](#-installation--setup)
   - [Prerequisites](#prerequisites)
   - [Database Setup](#database-setup)
   - [Application Setup](#application-setup)
 - [Demo User Credentials](#-demo-user-credentials)
-- [Directory Structure](#-directory-structure)
-- [Security & Best Practices](#-security--best-practices)
-- [License & Credits](#-license--credits)
+- [Security & Implementation Standards](#-security--implementation-standards)
+- [Limitations & Future Roadmap](#-limitations--future-roadmap)
+- [Project Information](#-project-information)
+- [License](#-license)
 
 ---
 
 ## 🌟 Overview
 
-**Care Compass Hospital** provides healthcare services across multiple branches in Sri Lanka. This web application offers a clean, modular, and role-oriented digital architecture tailored for three distinct user groups:
-1. **Patients** who schedule and monitor their healthcare consultations, review diagnoses, and view bills.
-2. **Hospital Staff** who manage daily clinical scheduling, medical records, and billing operations.
-3. **Administrators** who oversee hospital resources, medical staff, services, user accounts, and system security.
+**Care Compass Hospital** delivers comprehensive healthcare services across three major regional branches in Sri Lanka (Colombo, Kandy, and Kurunegala). 
+
+This application provides a clean, responsive, and secure web interface engineered to streamline administrative overhead, improve clinical communication, and empower patients with self-service healthcare management. The system coordinates three distinct authenticated user tiers—**Patients**, **Hospital Staff**, and **Administrators**—alongside a public-facing informational portal.
 
 ---
 
 ## 🚀 Key Features
 
 ### 1. Guest & Public Portal
-- **Home & Hero Section (`index.php`)**: Hospital overview, key service highlights, doctor profiles, and emergency helpline details.
-- **Doctor Directory (`doctors.php`)**: Browse and filter specialist doctors categorized by department, specialty, and branch availability.
-- **Services Catalog (`services.php`)**: Details on Western Medicine, Laboratory diagnostics (MRI, Blood tests), Emergency response, and Ayurvedic therapy with online query submission.
-- **About Us & Contact (`about.php`, `contact.php`)**: Hospital history, facilities, contact form, inquiry channels, and branch address details.
-- **Central Dispatcher (`dashboard.php`)**: Intelligent role-based dispatcher redirecting logged-in users to their respective portal.
-- **Authentication (`auth/login.php`, `auth/register.php`, `auth/logout.php`)**: Secure account registration and role-based login routing.
+- **Landing Page (`index.php`)**: Hospital overview, key service highlights, doctor profiles, dynamic patient testimonials, and emergency contact details.
+- **Doctor Directory (`doctors.php`)**: Search and filter specialist doctors by name, medical specialty, or branch location.
+- **Services Catalog (`services.php`)**: Detailed breakdown of Western Medicine, Laboratory diagnostics (MRI, Blood tests), Emergency response, and Ayurvedic therapy with online service query submission.
+- **About Us & Contact (`about.php`, `contact.php`)**: Hospital history, facilities, branch locations, interactive contact inquiry forms, and emergency hotlines.
+- **Role-Based Dispatcher (`dashboard.php`)**: Central authentication gatekeeper that automatically detects the authenticated user's session role and redirects them to their designated portal.
+- **Authentication Gateway (`auth/`)**:
+  - `auth/login.php`: Unified login allowing authentication via username or registered mobile number.
+  - `auth/register.php`: Patient self-registration with duplicate username, email, and phone validation.
+  - `auth/logout.php`: Complete session termination and secure redirect to the login gateway.
 
 ### 2. Patient Portal (`patient/`)
 - **Patient Dashboard (`patient/portal.php`)**:
-  - Live stat cards: Active appointments, recorded diagnoses, pending bills.
-  - Personal profile summary card.
-  - Interactive 5-star experience rating and feedback submission form.
-- **Visitor Gateway (`patient/gateway.php`)**: Informative entry point with quick registration and sign-in routes.
-- **Book Appointment (`patient/appointments.php`)**: Select specialist doctors, optional medical services, and preferred date/time.
-- **My Appointments (`patient/view_appointments.php`)**: Real-time list of appointments with color-coded status badges (*Pending*, *Confirmed*, *Cancelled*) and cancellation support (`patient/cancel_appointment.php`).
-- **Medical Records (`patient/view_medical_records.php`)**: Access physician diagnoses, prescribed treatments, and medical history.
-- **Billing & Invoices (`patient/view_bill_details.php`)**: View invoices, payment methods, transaction dates, and settlement status (*Paid*, *Pending*, *Overdue*).
-- **Feedback Handler (`patient/submit_feedback.php`)**: Secure processing of patient ratings and testimonials.
+  - Real-time KPI summary cards: Active appointments, electronic medical records, and pending/unpaid bills.
+  - Personal profile summary detailing contact details and patient identifier.
+  - Integrated 5-star rating and qualitative feedback submission form.
+- **Visitor Gateway (`patient/gateway.php`)**: Informative entry point with quick registration and sign-in routes for patients and visitors.
+- **Book Appointment (`patient/appointments.php`)**: Schedule appointments by selecting specialist doctors, optional medical services, and preferred date/time slots.
+- **Appointment Management (`patient/view_appointments.php`)**: Real-time list of booked visits with color-coded status badges (*Pending*, *Confirmed*, *Cancelled*) and cancellation support (`patient/cancel_appointment.php`).
+- **Electronic Health Records (`patient/view_medical_records.php`)**: Secure lookup for clinical diagnoses, prescribed treatment plans, consulting doctors, and visit timestamps.
+- **Billing & Invoices (`patient/view_bill_details.php`)**: Access itemized invoices, payment methods (*cash*, *card*, *online*), transaction timestamps, and settlement statuses (*Paid*, *Pending*, *Overdue*).
+- **Feedback Handler (`patient/submit_feedback.php`)**: Secure server-side validation and insertion of patient satisfaction feedback.
 
 ### 3. Hospital Staff Portal (`staff/`)
 - **Staff Dashboard (`staff/portal.php`)**:
-  - High-level operational KPI metrics: Active patient appointments, total medical records, outstanding bills.
-  - Direct navigation to appointment management, patient medical records, and billing records.
-- **Patient Medical Records (`staff/view_medical_records.php`)**: Centralized lookup for all patient treatment plans and medical documentation.
-- **Manage Appointments & Bills**: Direct operational access to `admin/manage_appointments.php` and `admin/manage_bill_payments.php`.
+  - Daily overview metrics: Active appointments, total clinical records, and pending bills.
+  - Quick-action navigation grid for daily workflow tasks.
+- **Medical Records Inspection (`staff/view_medical_records.php`)**: Read-only clinical lookup across all registered patients, assigned doctors, diagnoses, and treatment plans.
+- **Operational Workflow Access**: Staff access to appointment scheduling/status management (`admin/manage_appointments.php`) and billing ledger management (`admin/manage_bill_payments.php`).
 
 ### 4. Administrator Control Center (`admin/`)
-- **Admin Dashboard (`admin/portal.php`)**:
-  - Complete operational statistics (Total users, active doctors, scheduled appointments, pending payments).
-  - Dedicated modular navigation grid.
-- **User Management (`admin/manage_users.php`)**: Add, edit, role-assign (*admin*, *staff*, *patient*), and delete system accounts.
-- **Doctor Management (`admin/manage_doctors.php`)**: Onboard doctors, assign specializations, contact details, consultation branches, and profile photos.
-- **Services Management (`admin/manage_services.php`)**: Create and configure hospital medical services across Treatment, Laboratory, and Emergency categories.
-- **Appointment Management (`admin/manage_appointments.php`)**: Schedule, confirm, update, or remove patient appointments.
-- **Electronic Health Records (`admin/manage_medical_records.php`)**: Maintain medical consultation reports, diagnoses, and prescribed treatments.
-- **Billing & Payment Management (`admin/manage_bill_payments.php`)**: Manage billing statements, payment methods (*cash*, *card*, *online*), and payment states (*pending*, *paid*, *overdue*).
-- **Patient Feedback Review (`admin/manage_feedback.php`)**: Search, paginate, review, and moderate patient feedback submissions.
+- **Executive Dashboard (`admin/portal.php`)**:
+  - High-level system metrics (Total users, active doctors, scheduled appointments, pending invoices).
+  - Navigation hub for hospital operations management.
+- **User Account Management (`admin/manage_users.php`)**: Add, edit, assign roles (*admin*, *staff*, *patient*), reset passwords, and delete system users.
+- **Doctor Management (`admin/manage_doctors.php`)**: Onboard physicians, define specialties, assign hospital branch locations, manage contact numbers, and upload profile photos.
+- **Services Catalog Administration (`admin/manage_services.php`)**: Configure medical offerings across clinical categories (*Treatment*, *Laboratory*, *Emergency*).
+- **Appointment Administration (`admin/manage_appointments.php`)**: Create, update, reschedule, confirm, or remove patient appointments.
+- **Medical Records Management (`admin/manage_medical_records.php`)**: Add, modify, or delete official medical records, diagnostic observations, and prescription regimens.
+- **Billing & Financial Records (`admin/manage_bill_payments.php`)**: Record, adjust, and reconcile billing statements, amounts in LKR, payment methods, and statuses.
+- **Feedback Moderation (`admin/manage_feedback.php`)**: Searchable, paginated feedback review table with moderation and deletion capabilities.
 
 ---
 
@@ -97,112 +109,42 @@ A full-stack, multi-role web application designed for **Care Compass Hospitals**
                              |                       |                                         |
                     [ Role: 'admin' ]       [ Role: 'staff' ]                         [ Role: 'patient' ]
                     admin/portal.php        staff/portal.php                          patient/portal.php
-                    - Users & Doctors       - Appointments Management                 - Book Appointments
-                    - Services & Billing    - View Medical Records                    - View Records & Bills
-                    - Records & Feedback    - Billing Management                      - Submit Feedback
+                    - User Management       - Appointments Management                 - Book Appointments
+                    - Doctor Profiles       - View Medical Records                    - View Health Records
+                    - Service Catalog       - Billing Management                      - Invoice Statements
+                    - Records & Billing                                               - Submit Feedback
 ```
 
 ---
 
 ## 💻 Technology Stack
 
-| Layer | Technologies Used |
-|---|---|
-| **Frontend** | HTML5, CSS3 (Modular Layouts, Modern Variables, Responsive Grid/Flexbox), JavaScript (Vanilla ES6) |
-| **Backend** | PHP 8.x (Session-based RBAC, Prepared Statements, Modular Directory Architecture) |
-| **Database** | MySQL 8.0+ / MariaDB 10.5+ (Relational schema, foreign keys, UTF-8 charset) |
-| **Server** | Apache (WAMP / XAMPP / LAMP) or PHP Built-in Development Server |
+| Layer | Component | Description |
+|---|---|---|
+| **Frontend** | HTML5 / CSS3 / JavaScript | Custom responsive CSS grid & flexbox layouts, CSS variables, vanilla ES6 DOM scripting for form validation and UI transitions. |
+| **CSS Framework** | Bootstrap 5.3 (Alpha) | Used for select public grid layouts alongside custom stylesheets. |
+| **Backend** | PHP 8.1+ | Server-side rendering, Session-based Role-Based Access Control (RBAC), and modular architecture. |
+| **Database** | MySQL 8.0+ / MariaDB 10.5+ | Relational schema with foreign key constraints, indexing, and `utf8mb4` character encoding. |
+| **Database Driver** | PHP `mysqli` Extension | Object-oriented & procedural prepared statements (`mysqli_prepare`, `mysqli_stmt_bind_param`). |
+| **Web Server** | Apache (WampServer / XAMPP) | Local development hosting with multi-port fallback support. |
 
 ---
 
 ## 🗄️ Database Schema
 
-The system uses `care_compass_db` consisting of **9 core tables**:
+The underlying database `care_compass_db` consists of **9 core relational tables**:
 
-| Table | Description |
-|---|---|
-| `users` | Accounts, hashed passwords (`password_hash`), contact details, and user roles (`admin`, `staff`, `patient`). |
-| `doctors` | Physician profiles, specialization, location, phone, and photo file path. |
-| `services` | Medical offerings categorized by `Treatment`, `Laboratory`, or `Emergency`. |
-| `appointments` | Bookings linking `patient_id`, `doctor_id`, `service_id`, appointment date, and status. |
-| `medical_records` | Clinical diagnoses, physician treatments, prescriptions, and log timestamps. |
-| `bill_payments` | Financial records containing `amount`, `payment_method`, settlement date, and status. |
-| `feedback` | Patient ratings (1–5 stars) and qualitative feedback testimonials. |
-| `contact_queries` | General public inquiries submitted via the contact page. |
-| `service_queries` | Specialized questions regarding specific medical procedures. |
-
----
-
-## ⚙️ Installation & Setup
-
-### Prerequisites
-- [PHP 8.1+](https://www.php.net/) with `mysqli` extension enabled.
-- [MySQL 8.0+](https://www.mysql.com/) or [MariaDB 10.5+](https://mariadb.org/).
-- Web Server: **WampServer**, **XAMPP**, or Apache.
-
----
-
-### Database Setup
-
-1. Open your database manager (**phpMyAdmin** or MySQL command line).
-2. Create a new database named `care_compass_db`:
-   ```sql
-   CREATE DATABASE care_compass_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-   ```
-3. Import the SQL file located in `database/care_compass_db.sql`:
-   - Using terminal:
-     ```bash
-     mysql -u root -p care_compass_db < database/care_compass_db.sql
-     ```
-4. Verify database connection settings in [`includes/db_connect.php`](file:///d:/A%20MY%20Work/WEB%20Dev/care_compass/includes/db_connect.php):
-   ```php
-   $host = '127.0.0.1';
-   $username = 'root';
-   $password = '';
-   $database = 'care_compass_db';
-   ```
-   *(The script includes automatic fallback detection between standard MySQL port `3306` and WAMP MariaDB port `3307`).*
-
----
-
-### Application Setup
-
-#### Option A: Running via WampServer / XAMPP
-1. Move or clone the project folder into your web root:
-   - **WampServer**: `C:\wamp64\www\care_compass\`
-   - **XAMPP**: `C:\xampp\htdocs\care_compass\`
-2. Start the Apache and MySQL/MariaDB services from your control panel.
-3. Open your browser and navigate to:
-   ```
-   http://localhost/care_compass/
-   ```
-
-#### Option B: Running with PHP CLI Built-in Server
-1. Open PowerShell / Command Prompt inside the project directory:
-   ```bash
-   cd "d:\A MY Work\WEB Dev\care_compass"
-   ```
-2. Start the local server:
-   ```bash
-   php -S 127.0.0.1:8000
-   ```
-3. Open your browser at:
-   ```
-   http://127.0.0.1:8000
-   ```
-
----
-
-## 🔑 Demo User Credentials
-
-The database comes pre-seeded with sample user accounts for testing:
-
-| Role | Username | Password | Access Level |
-|---|---|---|---|
-| **Administrator** | `admin` | `admin123` | Full access to Admin Portal, User Management, Doctors, Services, and System Data |
-| **Hospital Staff** | `hasith` | `staff123` | Staff Portal, Appointment verification, Medical Records, Billing records |
-| **Patient** | `rash` | `123456` | Patient Portal, Appointment booking & cancellation, Invoices, Medical logs |
-| **Patient** | `Pramu` | `123456` | Secondary patient testing profile |
+| Table | Primary Key | Description |
+|---|---|---|
+| `users` | `id` | System user accounts, hashed credentials (`password_hash`), contact details, and assigned roles (`admin`, `staff`, `patient`). |
+| `doctors` | `id` | Physician directory including full name, clinical specialty, hospital branch location, telephone, and optional photo file path. |
+| `services` | `id` | Clinical and diagnostic offerings categorized by `Treatment`, `Laboratory`, or `Emergency`. |
+| `appointments` | `id` | Consultations linking `patient_id` (`users`), `doctor_id` (`doctors`), and optional `service_id` (`services`) with booking date/time and status (`pending`, `confirmed`, `cancelled`). |
+| `medical_records` | `id` | Health records containing clinical diagnosis, prescribed treatment, date recorded, referencing `patient_id`, `doctor_id`, and `service_id`. |
+| `bill_payments` | `id` | Financial ledger recording invoice amounts (LKR), payment methods (`cash`, `card`, `online`), statuses (`pending`, `paid`, `overdue`), and timestamps. |
+| `feedback` | `id` | Patient satisfaction ratings (1–5 stars) and qualitative review testimonials linked to `user_id`. |
+| `contact_queries` | `id` | General visitor inquiries submitted via the public contact form. |
+| `service_queries` | `id` | Patient inquiries specific to medical procedures and services. |
 
 ---
 
@@ -211,24 +153,24 @@ The database comes pre-seeded with sample user accounts for testing:
 ```
 care_compass/
 ├── admin/                         # Administrator Management Module
-│   ├── manage_appointments.php    # Appointment review & status updates (Admin & Staff)
-│   ├── manage_bill_payments.php   # Billing & payment records management (Admin & Staff)
+│   ├── manage_appointments.php    # Appointment scheduling, review & status updates
+│   ├── manage_bill_payments.php   # Billing statements & payment management
 │   ├── manage_doctors.php         # Doctor onboarding, specializations & photo uploads
-│   ├── manage_feedback.php        # Patient review & feedback management
-│   ├── manage_medical_records.php # Clinical records CRUD
+│   ├── manage_feedback.php        # Patient review moderation & feedback management
+│   ├── manage_medical_records.php # Electronic medical records CRUD
 │   ├── manage_services.php        # Hospital service catalog configuration
 │   ├── manage_users.php           # User account & role administration
-│   └── portal.php                 # Admin Control Center overview & KPI dashboard
-├── assets/                        # Static Assets
+│   └── portal.php                 # Admin Control Center dashboard & KPI metrics
+├── assets/                        # Static Client-Side Assets
 │   ├── css/
 │   │   ├── admin_styles.css       # Unified design system for internal portals
-│   │   └── styles.css             # Responsive public portal stylesheet
+│   │   └── styles.css             # Public portal responsive stylesheet
 │   ├── js/
 │   │   └── scripts.js             # Client-side validations, interactions & UI animations
 │   └── images/                    # Brand assets, banners, emergency & procedure visuals
 │       └── doctors/               # Doctor profile photographs
 ├── auth/                          # Authentication & Session Module
-│   ├── login.php                  # Multi-role authentication endpoint
+│   ├── login.php                  # Multi-role authentication endpoint (username/mobile)
 │   ├── logout.php                 # Session termination & clean redirection
 │   └── register.php               # Patient self-registration portal
 ├── database/                      # Database Scripts & Migrations
@@ -254,25 +196,144 @@ care_compass/
 ├── doctors.php                    # Public searchable doctor catalog
 ├── index.php                      # Public hospital homepage & landing page
 ├── services.php                   # Public medical & diagnostic services catalog
-├── LICENSE                        # Project license
-└── README.md                      # Architecture documentation & setup guide
+├── LICENSE                        # Apache 2.0 License
+└── README.md                      # Technical documentation & project guide
 ```
 
 ---
 
-## 🔒 Security & Best Practices
+## ⚙️ Installation & Setup
 
-- **Role-Based Access Control (RBAC)**: Every private endpoint verifies `$_SESSION['user_id']` and the specific allowed `$_SESSION['role']`, preventing privilege escalation.
-- **SQL Injection Prevention**: All database queries utilize **Prepared Statements** (`mysqli_prepare` and `mysqli_stmt_bind_param`) for user-supplied inputs.
-- **Cross-Site Scripting (XSS) Mitigation**: User outputs are sanitized using `htmlspecialchars()` throughout HTML templates.
-- **Password Security**: Passwords are saved using one-way hashes via PHP's native `password_hash()` (Bcrypt).
-- **File Upload Validation**: Doctor image uploads are strictly validated by allowed image extensions (`jpg`, `jpeg`, `png`, `webp`).
+### Prerequisites
+- **PHP**: Version 8.1 or higher (with `mysqli` and `session` extensions enabled).
+- **Database**: MySQL 8.0+ or MariaDB 10.5+.
+- **Web Server**: Apache via **WampServer**, **XAMPP**, **LAMP**, or the native PHP Built-in CLI Server.
+- **Git**: Installed for repository cloning.
 
 ---
 
-## 📄 License & Credits
+### Step 1: Clone the Repository
+Clone the project into your local web server's document root:
 
-- **Project**: Care Compass Hospitals Web Portal
-- **Designed & Developed for**: Care Compass Hospital Operations
-- **Author**: Rashintha Lakshan Tharanga
-- **Year**: 2024
+```bash
+# For WampServer
+cd C:\wamp64\www\
+git clone https://github.com/RashLakshan/Care-Compass-Hospitals.git care_compass
+
+# For XAMPP
+cd C:\xampp\htdocs\
+git clone https://github.com/RashLakshan/Care-Compass-Hospitals.git care_compass
+```
+
+---
+
+### Step 2: Database Setup
+
+1. Start your **MySQL / MariaDB** server.
+2. Open your preferred database management tool (**phpMyAdmin**, MySQL Workbench, or CLI).
+3. Create the database:
+   ```sql
+   CREATE DATABASE care_compass_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+   ```
+4. Import the pre-configured database schema and sample records from [`database/care_compass_db.sql`](database/care_compass_db.sql):
+   - **Via CLI**:
+     ```bash
+     mysql -u root -p care_compass_db < database/care_compass_db.sql
+     ```
+   - **Via phpMyAdmin**: Select `care_compass_db` > Click **Import** > Choose `database/care_compass_db.sql` > Click **Import**.
+
+---
+
+### Step 3: Database Connection Configuration
+
+Inspect [`includes/db_connect.php`](includes/db_connect.php) to confirm connection credentials:
+
+```php
+$host     = '127.0.0.1';
+$username = 'root';
+$password = '';
+$database = 'care_compass_db';
+```
+
+> **Automatic Port Detection**: The connection script automatically connects to standard MySQL port `3306` first and transparently falls back to WAMP MariaDB port `3307` if needed.
+
+---
+
+### Step 4: Running the Application
+
+#### Method A: Via WampServer / XAMPP (Recommended)
+1. Ensure Apache and MySQL/MariaDB services are active.
+2. Launch your web browser and navigate to:
+   ```
+   http://localhost/care_compass/
+   ```
+
+#### Method B: Via PHP Built-in Development Server
+If running without WAMP/XAMPP:
+1. Open a terminal inside the project directory:
+   ```bash
+   cd care_compass
+   ```
+2. Start the built-in server:
+   ```bash
+   php -S 127.0.0.1:8000
+   ```
+3. Open your browser and navigate to:
+   ```
+   http://127.0.0.1:8000
+   ```
+
+---
+
+## 🔑 Demo User Credentials
+
+The database script [`database/care_compass_db.sql`](database/care_compass_db.sql) is pre-seeded with sample development accounts for grading and testing purposes:
+
+| Assigned Role | Username | Password | Purpose & Scope |
+|---|---|---|---|
+| **Administrator** | `admin` | `admin123` | Full access to Admin Portal, User Management, Doctor profiles, Services, System Records, and Feedback. |
+| **Hospital Staff** | `hasith` | `staff123` | Operational access to Staff Portal, Appointment scheduling/updates, Medical Records, and Billing ledger. |
+| **Patient** | `rash` | `123456` | Primary patient testing account with existing appointments, billing history, and medical records. |
+| **Patient** | `Pramu` | `123456` | Secondary patient testing account for appointment booking verification. |
+
+> **Security Note**: All demo passwords in the database are stored as cryptographic hashes generated via PHP's native `password_hash()` (Bcrypt). The plain-text passwords listed above are strictly intended for local academic evaluation.
+
+---
+
+## 🔒 Security & Implementation Standards
+
+- **Role-Based Access Control (RBAC)**: Every private endpoint validates both `$_SESSION['user_id']` and the specific permitted `$_SESSION['role']` at the script head, redirecting unauthorized users to prevent privilege escalation.
+- **SQL Injection Prevention**: Database operations utilize parameterized **Prepared Statements** (`mysqli_prepare`, `mysqli_stmt_bind_param`) across all input channels.
+- **Cross-Site Scripting (XSS) Mitigation**: User-supplied values rendered in HTML contexts are sanitized via `htmlspecialchars()` with proper escaping.
+- **Password Security**: Passwords are saved as one-way Bcrypt hashes using PHP's native `password_hash()` and verified via `password_verify()`.
+- **Upload Whitelisting**: Physician photo uploads are strictly verified against an allowed extension whitelist (`jpg`, `jpeg`, `png`, `gif`, `webp`) before being written to disk.
+- **Defensive Database Bootstrapping**: Key administrative management scripts include schema verification logic that safely creates missing core tables if not yet initialized.
+
+---
+
+## 🛠️ Limitations & Future Roadmap
+
+As an academic project focused on core web engineering concepts, certain enterprise features were intentionally scoped out:
+
+- **Payment Gateway Integration**: Billing statements currently record payment methods (*cash*, *card*, *online*) and track payment statuses (*paid*, *pending*, *overdue*) in the database. Future enhancements would integrate external payment processors (e.g., Stripe, PayHere).
+- **Automated Messaging & Notifications**: Patient appointments currently track contact numbers for administrative follow-up. Integration with an SMS gateway (e.g., Twilio) or automated transactional email notifications (e.g., PHPMailer / SendGrid) represents an ideal next step.
+- **Automated Testing Suite**: Current verification relies on manual functional testing and PHP syntax linting. A future milestone is introducing unit and integration testing via **PHPUnit**.
+- **REST API & Architectural Evolution**: Future versions could separate the presentation layer by exposing RESTful API endpoints for prospective mobile or modern single-page application (SPA) frontends.
+
+---
+
+## 📌 Project Information
+
+- **Project Title**: Care Compass Hospital Management System
+- **Project Type**: University Academic Assignment / Coursework Project
+- **Module / Domain**: Web Application Development & Software Engineering
+- **Author / Developer**: Rashintha Lakshan Tharanga
+- **Academic Year**: 2024 – 2025
+- **Version**: 2.0.0 (Modular Refactor)
+- **Repository**: [https://github.com/RashLakshan/Care-Compass-Hospitals](https://github.com/RashLakshan/Care-Compass-Hospitals)
+
+---
+
+## 📄 License
+
+This project is open-source software licensed under the **[Apache License 2.0](LICENSE)**.
