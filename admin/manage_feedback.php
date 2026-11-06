@@ -152,3 +152,4 @@ if (isset($_GET['delete_id']) && $_SESSION['role'] === 'admin') {
     <script src="../assets/js/scripts.js"></script>
 </body>
 </html>
+
